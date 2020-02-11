@@ -1,4 +1,4 @@
-package com.leyou.common;
+package com.leyou.common.utils;
 
 /**
  * @author 虎哥
