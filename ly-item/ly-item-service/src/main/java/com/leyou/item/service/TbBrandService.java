@@ -1,7 +1,11 @@
 package com.leyou.item.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.leyou.common.vo.PageResult;
+import com.leyou.item.dto.BrandDTO;
 import com.leyou.item.entity.TbBrand;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,9 @@ import com.leyou.item.entity.TbBrand;
  */
 public interface TbBrandService extends IService<TbBrand> {
 
+    PageResult<BrandDTO> findByPage(String key, Integer page, Integer rows, String sortBy, Boolean desc);
+
+    void insertBrand(BrandDTO brandDTO, List<Long> cids);
+
+    void updateBrand(BrandDTO brandDTO, List<Long> cids);
 }

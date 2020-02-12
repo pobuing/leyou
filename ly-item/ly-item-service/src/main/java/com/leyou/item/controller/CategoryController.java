@@ -29,4 +29,13 @@ public class CategoryController {
         return ResponseEntity.ok(categoryDTOS);
     }
 
+    @GetMapping(value = "/of/brand/", name = "根据品牌id查询分类数据")
+    public ResponseEntity<List<CategoryDTO>> findCategoryListByBrandId(
+            @RequestParam(name = "id") Long id
+    ) {
+        List<CategoryDTO> categoryDTOList = categoryService.findCategoryListByBrandId(id);
+        return ResponseEntity.ok(categoryDTOList);
+    }
+
+
 }

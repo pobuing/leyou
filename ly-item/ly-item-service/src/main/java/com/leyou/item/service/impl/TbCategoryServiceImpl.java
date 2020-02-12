@@ -30,6 +30,7 @@ public class TbCategoryServiceImpl extends ServiceImpl<TbCategoryMapper, TbCateg
     public List<CategoryDTO> findCategoryListByParentId(Long pid) {
         //创建查询条件
         QueryWrapper<TbCategory> queryWrapper = new QueryWrapper<>();
+
         queryWrapper.lambda().eq(TbCategory::getParentId, pid);
         List<TbCategory> tbCategoryList = this.list(queryWrapper);
         if (CollectionUtils.isEmpty(tbCategoryList)) {
@@ -37,5 +38,15 @@ public class TbCategoryServiceImpl extends ServiceImpl<TbCategoryMapper, TbCateg
         }
         List<CategoryDTO> categoryDTOS = BeanHelper.copyWithCollection(tbCategoryList, CategoryDTO.class);
         return categoryDTOS;
+    }
+
+    @Override
+    public List<CategoryDTO> findCategoryListByBrandId(Long id) {
+        List<TbCategory> tbCategoryList = this.getBaseMapper().findCategoryListByBrandId(id);
+        if (CollectionUtils.isEmpty(tbCategoryList)) {
+            throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+        }
+        List<CategoryDTO> categoryDTOList = BeanHelper.copyWithCollection(tbCategoryList, CategoryDTO.class);
+        return categoryDTOList;
     }
 }

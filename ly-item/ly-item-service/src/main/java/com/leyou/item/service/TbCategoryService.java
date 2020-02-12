@@ -18,4 +18,5 @@ public interface TbCategoryService extends IService<TbCategory> {
 
     List<CategoryDTO> findCategoryListByParentId(Long pid);
 
+    List<CategoryDTO> findCategoryListByBrandId(Long id);
 }
